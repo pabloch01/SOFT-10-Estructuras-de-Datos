@@ -2,7 +2,7 @@
 Repositorio creado con el fin de alojar las tareas del curso SOFT-10 Estructuras de Datos\\
 Estructura de branches del repositorio:
 
-├── avances-proyecto/
+├── avances-proyecto\
 │   ├──avance-1\
 │   ├──avance-2\
 │   └──avance-3\
