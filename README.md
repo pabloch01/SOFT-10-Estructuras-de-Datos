@@ -11,7 +11,6 @@ Estructura de branches del repositorio:
 │ &emsp; ├──practica-1\
 │ &emsp; ├──practica-2\
 │ &emsp; └──practica-3\
-│
 └── estudios-de-caso\
 &emsp; ├──estudio-de-caso-1\
 &emsp; ├──estudio-de-caso-2\
