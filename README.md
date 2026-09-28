@@ -6,7 +6,6 @@ Estructura de branches del repositorio:
 │ &emsp; ├──avance-1\
 │ &emsp; ├──avance-2\
 │ &emsp; └──avance-3\
-│
 ├── practicas\
 │ &emsp; ├──practica-1\
 │ &emsp; ├──practica-2\
