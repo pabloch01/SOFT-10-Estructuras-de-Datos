@@ -1,5 +1,5 @@
 # SOFT-10-Estructuras-de-Datos
-Repositorio creado con el fin de alojar las tareas del curso SOFT-10 Estructuras de Datos\\
+Repositorio creado con el fin de alojar las tareas del curso SOFT-10 Estructuras de Datos\
 Estructura de branches del repositorio:
 
 ├── avances-proyecto\
@@ -11,6 +11,6 @@ Estructura de branches del repositorio:
 │ &emsp; ├──practica-2\
 │ &emsp; └──practica-3\
 └── estudios-de-caso\
-&emsp; ├──estudio-de-caso-1\
-&emsp; ├──estudio-de-caso-2\
-&emsp; └──estudio-de-caso-3
+&emsp; &emsp; ├──estudio-de-caso-1\
+&emsp; &emsp; ├──estudio-de-caso-2\
+&emsp; &emsp; └──estudio-de-caso-3
