@@ -139,4 +139,61 @@ public class ArbolBMas {
     // Eliminación
 
     // Recorrido por rango (Debe mostrar los datos correspondientes al rango recuperado.)
+    // Busca la llave de inicio y, a partir de ella, imprime los siguientes n elementos recorriendo las hojas enlazadas
+    public void recorrerRango(int llaveInicio, int n) {
+        if(n <= 0) {
+            System.out.println("La cantidad de elementos a recorrer debe ser mayor que 0.");
+            return;
+        }
+        if(this.raiz.getClaves().isEmpty()) {
+            System.out.println("El árbol está vacío.");
+            return;
+        }
+
+        // Se busca la hoja en la que se encuentra (o debería encontrarse) la llave de inicio
+        NodoArbolBMas hoja = buscarHoja(llaveInicio);
+
+        // Dentro de esa hoja, se ubica la primera llave mayor o igual que la llave de inicio
+        int i = 0;
+        while(i < hoja.getClaves().size() && hoja.getClaves().get(i) < llaveInicio) {
+            i++;
+        }
+
+        if(!hoja.getClaves().contains(llaveInicio)) {
+            System.out.println("La llave " + llaveInicio + " no existe; el recorrido comienza en la siguiente llave mayor.");
+        }
+
+        // Se imprimen los n elementos y, al terminar una hoja, se salta a la siguiente mediante el enlace
+        int impresos = 0;
+        while(hoja != null && impresos < n) {
+            if(i < hoja.getClaves().size()) {
+                System.out.println("Llave: " + hoja.getClaves().get(i) + " | Dato: " + hoja.getDatos().get(i));
+                impresos++;
+                i++;
+            } else {
+                hoja = hoja.getSiguiente();
+                i = 0;
+            }
+        }
+
+        if(impresos == 0) {
+            System.out.println("No hay elementos a partir de la llave " + llaveInicio + ".");
+        } else if(impresos < n) {
+            System.out.println("Se llegó al final del árbol: solo había " + impresos + " elemento(s) para recorrer.");
+        }
+    }
+
+    // Búsqueda privada de la hoja en la que se encuentra (o debería encontrarse) una llave
+    // Las llaves iguales a un separador se encuentran en el subárbol derecho de este
+    private NodoArbolBMas buscarHoja(int llave) {
+        NodoArbolBMas nodo = this.raiz;
+        while(!nodo.esHoja()) {
+            int i = 0;
+            while(i < nodo.getClaves().size() && llave >= nodo.getClaves().get(i)) {
+                i++;
+            }
+            nodo = nodo.getHijos().get(i);
+        }
+        return nodo;
+    }
 }
