@@ -30,8 +30,9 @@ public class Main {
             System.out.println("\n===== ÁRBOL B+ (orden 4) =====");
             System.out.println("1. Insertar un registro");
             System.out.println("2. Buscar una llave");
-            System.out.println("3. Recorrer registros a partir de una llave");
-            System.out.println("4. Mostrar el árbol");
+            System.out.println("3. Eliminar un registro");
+            System.out.println("4. Recorrer registros a partir de una llave");
+            System.out.println("5. Mostrar el árbol");
             System.out.println("0. Salir");
 
             opcion = leerEntero("\nSeleccione una opción: ");
@@ -44,9 +45,12 @@ public class Main {
                     opcionBuscar();
                     break;
                 case 3:
-                    opcionRecorrerRango();
+                    opcionEliminar();
                     break;
                 case 4:
+                    opcionRecorrerRango();
+                    break;
+                case 5:
                     System.out.println("\n--- ESTRUCTURA DEL ÁRBOL ---");
                     arbol.imprimirArbol();
                     break;
@@ -54,7 +58,7 @@ public class Main {
                     System.out.println("\nSaliendo del programa. ¡Hasta pronto!");
                     break;
                 default:
-                    System.out.println("\n[Error] Opción no válida. Elija un número entre 0 y 4.");
+                    System.out.println("\n[Error] Opción no válida. Elija un número entre 0 y 5.");
             }
         } while(opcion != 0);
     }
@@ -86,6 +90,29 @@ public class Main {
             arbol.recorrerRango(llave, 1);
         } else {
             System.out.println("[Error] La llave " + llave + " no se encuentra en el árbol.");
+        }
+    }
+
+    // Opción para eliminar una llave junto con su dato, previa confirmación del usuario
+    private static void opcionEliminar() {
+        System.out.println("\n--- ELIMINAR UN REGISTRO ---");
+        int llave = leerEntero("Llave a eliminar: ");
+
+        if(!arbol.buscar(llave)) {
+            System.out.println("[Error] La llave " + llave + " no se encuentra en el árbol.");
+            return;
+        }
+
+        // Se muestra el registro antes de confirmar la eliminación
+        System.out.println("Registro encontrado:");
+        arbol.recorrerRango(llave, 1);
+        String confirmacion = leerTexto("¿Seguro que desea eliminarlo? (s/n): ");
+
+        if(confirmacion.equalsIgnoreCase("s")) {
+            arbol.eliminar(llave);
+            System.out.println("¡Registro eliminado correctamente!");
+        } else {
+            System.out.println("Eliminación cancelada.");
         }
     }
 
