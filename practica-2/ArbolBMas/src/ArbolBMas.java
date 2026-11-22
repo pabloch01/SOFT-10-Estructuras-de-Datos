@@ -13,10 +13,16 @@ public class ArbolBMas {
         raiz = new NodoArbolBMas(true);
     }
 
-    // Inserción de una llave en el árbol B+
-    public void insertar(int clave) {
+    // Inserción de una llave y su dato asociado en el árbol B+
+    public void insertar(int clave, String dato) {
+        // Si la llave ya existe en el árbol, no se inserta de nuevo
+        if(buscar(clave)) {
+            System.out.println("La llave " + clave + " ya existe en el árbol.");
+            return;
+        }
+
         // Se inserta primero de forma recursiva
-        insertarRecursivo(this.raiz, clave);
+        insertarRecursivo(this.raiz, clave, dato);
 
         // Se verifica si la raíz se desbordó
         if(this.raiz.getClaves().size() == orden) {
@@ -27,9 +33,9 @@ public class ArbolBMas {
         }
     }
 
-    // Inserción recursiva de una llave
+    // Inserción recursiva de una llave y su dato asociado
     // Permite que los nodos se desborden temporalmente y los divide al regresar de la recursión
-    private void insertarRecursivo(NodoArbolBMas nodo, int llave) {
+    private void insertarRecursivo(NodoArbolBMas nodo, int llave, String dato) {
         int i = nodo.getClaves().size() - 1;
 
         if(nodo.esHoja()) {
@@ -37,6 +43,8 @@ public class ArbolBMas {
                 i--;
             }
             nodo.getClaves().add(i + 1, llave);
+            // El dato se guarda en la misma posición que su llave
+            nodo.getDatos().add(i + 1, dato);
         } else {
             while(i >= 0 && llave < nodo.getClaves().get(i)) {
                 i--;
@@ -45,7 +53,7 @@ public class ArbolBMas {
             NodoArbolBMas hijo = nodo.getHijos().get(i);
 
             // Llamada recursiva para insertar la llave primero en el hijo correspondiente
-            insertarRecursivo(hijo, llave);
+            insertarRecursivo(hijo, llave, dato);
 
             // Evaluación de desbordamiento al retornar de la recursividad
             if(hijo.getClaves().size() == orden) {
