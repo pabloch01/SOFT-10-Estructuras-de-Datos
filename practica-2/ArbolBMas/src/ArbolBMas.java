@@ -73,6 +73,14 @@ public class ArbolBMas {
             nuevoNodo.setClaves(new ArrayList<>(nodoLleno.getClaves().subList(mitad, nodoLleno.getClaves().size())));
             nodoLleno.setClaves(new ArrayList<>(nodoLleno.getClaves().subList(0, mitad)));
 
+            // Los datos se reparten igual que las llaves, para que cada dato siga junto a su llave
+            nuevoNodo.setDatos(new ArrayList<>(nodoLleno.getDatos().subList(mitad, nodoLleno.getDatos().size())));
+            nodoLleno.setDatos(new ArrayList<>(nodoLleno.getDatos().subList(0, mitad)));
+
+            // La nueva hoja queda a la derecha de la hoja dividida, por lo que se enlaza entre ella y su antigua siguiente
+            nuevoNodo.setSiguiente(nodoLleno.getSiguiente());
+            nodoLleno.setSiguiente(nuevoNodo);
+
             // El padre recibe como separador la primera llave del nuevo nodo
             int llaveMedia = nuevoNodo.getClaves().getFirst();
             padre.getClaves().add(indice, llaveMedia);
